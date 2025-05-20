@@ -26,7 +26,6 @@ class MarketParser:
                         "Accept-Encoding": "gzip, deflate, br",
                         "Connection": "keep-alive",
                         "Upgrade-Insecure-Requests": "1",
-                        "Referer": "https://www.wildberries.ru/",
                         "DNT": "1",
                         "Sec-Fetch-Dest": "document",
                         "Sec-Fetch-Mode": "navigate",
@@ -38,10 +37,9 @@ class MarketParser:
                         "Accept-Language": "ru-RU,ru;q=0.9",
                         "Accept-Encoding": "gzip, deflate, br",
                         "Connection": "keep-alive",
-                        "Referer": "https://www.wildberries.ru/"
                     }
                 ],
-                "proxies": [None]
+                "proxies": [None] # Опционально добавить свои прокси
             },
             "wb": {
                 "method": ["aiohttp"]
@@ -198,7 +196,7 @@ class MarketParser:
                 content = await self.page.content()
                 soup = BeautifulSoup(content, 'html.parser')
                 if soup.select_one(".puzzle-captcha-slider"):
-                    print("Обнаружена капча. Попытка решения...")
+                    print("Обнаружена капча. Попытка решения...") # Либо вручную решите через браузер, либо добавьте сервис, например 2Captcha
                     await asyncio.sleep(10)
                     content = await self.page.content()
 
